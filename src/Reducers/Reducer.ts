@@ -18,6 +18,9 @@ function reducer(tasks:Task[],action:typeAction,){
                 }
             ]
         }
+        case"DELETE_Task":{
+           return  tasks.filter((item)=>item.id!==action.id)
+        }
         default:
             return tasks
     }
