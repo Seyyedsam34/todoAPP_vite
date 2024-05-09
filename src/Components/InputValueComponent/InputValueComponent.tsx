@@ -1,14 +1,10 @@
 import React, { useState } from "react"
-import { Task } from "../../Reducers/Type"
-
 export interface valueProp{
     onAdd:(value:string)=>void,
-    sendValue:Task
 }
 
-function InputValue({onAdd,sendValue}:valueProp){
+function InputValue({onAdd}:valueProp){
     const [value,setValue]=useState("")
-    console.log(sendValue)
     const handelSubmit=()=>{
         if(value.length){
             onAdd(value)

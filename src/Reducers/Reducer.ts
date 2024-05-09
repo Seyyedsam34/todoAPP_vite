@@ -1,9 +1,6 @@
 import { Task,typeAction } from "./Type";
 
-
-
-
-function reducer(tasks:Task[],action:typeAction,){
+function reducer(tasks:Task[],action:typeAction){
 
     switch(action.type){
         case "ADD_Task":{
@@ -20,6 +17,18 @@ function reducer(tasks:Task[],action:typeAction,){
         }
         case"DELETE_Task":{
            return  tasks.filter((item)=>item.id!==action.id)
+        }
+        case "CHECKBOX_Task":{
+            return tasks.map((item) => {
+                if (item.id === action.id) {
+                  return {
+                    ...item,
+                    done: !item.done,
+                  };
+                } else {
+                  return item;
+                  }}
+            )
         }
         default:
             return tasks
