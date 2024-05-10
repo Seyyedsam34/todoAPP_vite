@@ -1,13 +1,15 @@
+import React from "react"
 import { Task } from "../../Reducers/Type"
 
 export interface ListShowProp{
     taskShow:Task[],
     onDelete:(taskId:number)=>void
     onCheckBox:(itemId:number)=>void
+    onEdite:(task:Task)=>void
 }
 
 
-function ListShow({taskShow,onDelete,onCheckBox}:ListShowProp){
+function ListShow({taskShow,onDelete,onCheckBox,onEdite}:ListShowProp){
     const handelDelete=(taskId:number)=>{
         onDelete(taskId)
     }
@@ -15,20 +17,24 @@ function ListShow({taskShow,onDelete,onCheckBox}:ListShowProp){
     const handelcheckBox=(itemId:number)=>{
         onCheckBox(itemId)
     }
+    const handelEdit=(task:Task)=>{
+        onEdite(task)
+    }
     return(
         <>
-            <ul>
+            <ul >
                 {taskShow.map((item)=>(
                     <div key={item.id}>
-                        <input key={item.id} type="checkbox" 
+                        <input  type="checkbox" 
                 checked={item.done} 
                 onChange={()=>{handelcheckBox(item.id)}}
                 />
                 <li key={item.id}>{item.title}</li>
-                <button key={item.id} onClick={()=>handelDelete(item.id)}
+                <button  onClick={()=>handelDelete(item.id)}
                 >انجام دادم
                 </button>
-                <button key={item.id}
+                <button 
+                onClick={()=>handelEdit(item)}
                 >
                 ویرایش</button>
                 </div>
